@@ -21,12 +21,20 @@ func (user *User) Prepare() error {
 
 	if err != nil {
 		log.Fatalf("Error during the password generation: %v", err)
+		return err
 	}
 	user.Password = string(password)
 	user.Token = uuid.NewV4().String()
 
+	err = user.validate()
+	if err != nil {
+		log.Fatalf("Error during the password generation: %v", err)
+		return err
+	}
+	return nil
 }
 
 func (user *User) validate() error {
 
+	return nil
 }
