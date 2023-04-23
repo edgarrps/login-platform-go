@@ -25,5 +25,8 @@ func (user *User) Prepare() error {
 	user.Password = string(password)
 	user.Token = uuid.NewV4().String()
 
-	return nil
+}
+
+func (user *User) validate() error {
+
 }
