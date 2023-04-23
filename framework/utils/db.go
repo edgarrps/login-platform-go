@@ -24,6 +24,8 @@ func ConnectDB() *gorm.DB {
 		panic(err)
 	}
 
+	defer db.Close()
+
 	db.AutoMigrate(&domain.User{})
 
 	return db
