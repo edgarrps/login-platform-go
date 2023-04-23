@@ -35,6 +35,5 @@ func (user *User) Prepare() error {
 }
 
 func (user *User) validate() error {
-
 	return nil
 }
