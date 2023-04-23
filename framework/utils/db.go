@@ -2,7 +2,9 @@ package utils
 
 import (
 	"log"
+	"os"
 
+	"github.com/edgarrps/login-platform-go/domain"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 )
@@ -13,5 +15,16 @@ func ConnectDB() *gorm.DB {
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
-	return nil
+
+	dsn := os.Getenv("dsn")
+	db, err := gorm.Open("postgres", dsn)
+
+	if err != nil {
+		log.Fatalf("Error connecting to database: %v", err)
+		panic(err)
+	}
+
+	db.AutoMigrate(&domain.User{})
+
+	return db
 }
